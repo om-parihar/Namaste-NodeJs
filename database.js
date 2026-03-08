@@ -19,12 +19,25 @@ async function main(){
         phonenumber: "124144235",
     };
 
+    // Insert
     const insertResults= await collection.insertMany([data]);
     console.log("Inserted documents=>",insertResults);
+
+    // Filter
+    const filteredDocs = await collection.find({ firstname: "Om" }).toArray();
+    console.log('Found documents filtered by { firstname: "Om" } =>', filteredDocs);
     
     // Read
     const findResults=await collection.find({}).toArray();
     console.log("Found documents=>", findResults);
+
+    // // Delete
+    // const deleteResult = await collection.deleteMany({ lastname: "Kholi" });
+    // console.log('Deleted documents =>', deleteResult);
+
+    // Count
+    const countResult = await collection.countDocuments({});
+    console.log("Number of documents collection=>",countResult);
 
     return "done.";
 
